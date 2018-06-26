@@ -60,6 +60,4 @@ public class ApplicationManager {
         navigationHelper.gotoGroupPage();
     }
 
-    public void gotoContactPage() { navigationHelper.gotoAddContactPage();
     }
-}
