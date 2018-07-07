@@ -2,9 +2,11 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -34,8 +36,9 @@ public class ContactHelper extends HelperBase {
     //}
   }
 
-  public void initContactEdit() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void initContactEdit(int index) {
+    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click();
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void updateContactInfo() {
@@ -46,8 +49,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void selectContact() {
-    wd.findElement(By.name("selected[]")).click();
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void confirmDeletingContact() {
@@ -72,4 +75,15 @@ return isElementPresent(By.name("selected[]"));
     public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
     }
+
+  public ArrayList<ContactData> getContactList() {
+    ArrayList<ContactData> contacts = new ArrayList<>();
+    java.util.List<WebElement> elements = wd.findElements(By.cssSelector("[name = entry]"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      ContactData contact = new ContactData("Alfredo", null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
+  }
 }
