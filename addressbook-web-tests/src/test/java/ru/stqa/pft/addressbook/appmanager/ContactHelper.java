@@ -78,10 +78,12 @@ return isElementPresent(By.name("selected[]"));
 
   public ArrayList<ContactData> getContactList() {
     ArrayList<ContactData> contacts = new ArrayList<>();
-    java.util.List<WebElement> elements = wd.findElements(By.cssSelector("[name = entry]"));
+    List<WebElement> elements = wd.findElements(By.cssSelector("[name = entry]"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData("Alfredo", null, null, null, null);
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      String first_name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String last_name = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      ContactData contact = new ContactData(id, first_name, last_name, null, null, null);
       contacts.add(contact);
     }
     return contacts;
