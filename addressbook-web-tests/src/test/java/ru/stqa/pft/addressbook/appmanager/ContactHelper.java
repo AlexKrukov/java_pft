@@ -80,7 +80,7 @@ return isElementPresent(By.name("selected[]"));
     ArrayList<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.cssSelector("[name = entry]"));
     for (WebElement element : elements) {
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String first_name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String last_name = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       ContactData contact = new ContactData(id, first_name, last_name, null, null, null);
