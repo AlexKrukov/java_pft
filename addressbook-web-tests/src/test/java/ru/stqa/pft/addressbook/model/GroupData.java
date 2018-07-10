@@ -22,8 +22,10 @@ public class GroupData {
         this.header = header;
         this.footer = footer;
     }
-    
-    public int getId() { return id; }
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
