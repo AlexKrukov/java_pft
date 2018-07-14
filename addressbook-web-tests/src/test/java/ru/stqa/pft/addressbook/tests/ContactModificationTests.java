@@ -9,10 +9,10 @@ import java.util.Comparator;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test
+  @Test (enabled = false)
 
   public void testContactModification() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("John", "Travolta", "18887779090", "johntravolta777@gmail.com", "test1"));
     }

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class ContactDelitionTests extends TestBase {
 
-  @Test
+  @Test (enabled = false)
 
   public void testContactDelition() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("John", "Travolta", "18887779090", "johntravolta777@gmail.com", "test1"));
     }

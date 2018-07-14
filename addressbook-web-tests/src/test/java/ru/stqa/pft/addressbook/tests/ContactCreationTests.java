@@ -10,9 +10,10 @@ import java.util.Comparator;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test
+    @Test (enabled = false)
+
     public void testContactCreation() {
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
         ArrayList<ContactData> before = app.getContactHelper().getContactList();
         ContactData contact = new ContactData("John", "Travolta", null, null, null);
         app.getContactHelper().gotoAddContactPage();
