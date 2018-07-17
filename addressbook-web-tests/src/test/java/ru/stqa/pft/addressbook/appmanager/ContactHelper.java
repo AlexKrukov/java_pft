@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class ContactHelper extends HelperBase {
     gotoAddContactPage();
     fillContactForm(group);
     enterNewContact();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -72,6 +74,7 @@ public class ContactHelper extends HelperBase {
     initContactEditById(contact.getId());
     fillContactForm(contact);
     updateContactInfo();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -79,6 +82,7 @@ public class ContactHelper extends HelperBase {
     selectContactById(contact.getId());
     deleteContact();
     confirmDeletingContact();
+    contactCache = null;
   }
 
   public boolean isThereAContact() {
@@ -89,16 +93,21 @@ return isElementPresent(By.name("selected[]"));
     return wd.findElements(By.name("selected[]")).size();
     }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("[name = entry]"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String first_name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String last_name = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-      contacts.add(new ContactData().withId(id).withFirstName(first_name).withLastName(last_name));
+      contactCache.add(new ContactData().withId(id).withFirstName(first_name).withLastName(last_name));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 }
