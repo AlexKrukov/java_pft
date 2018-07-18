@@ -24,7 +24,7 @@ public class ContactCreationTests extends TestBase {
                 before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }
 
-    @Test
+    @Test (enabled = false)
 
     public void testBadContactCreation() {
         app.goTo().homePage();
