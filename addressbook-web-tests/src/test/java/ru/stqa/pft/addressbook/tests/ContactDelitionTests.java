@@ -15,7 +15,7 @@ public class ContactDelitionTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().create(new ContactData().withFirstName("John").withLastName("Travolta").withPhone("18887779090").withEmail("johntravolta777@gmail.com").withGroup("test1"));
+            app.contact().create(new ContactData().withFirstName("John").withLastName("Travolta").withHomePhone("18887779090").withEmail("johntravolta777@gmail.com").withGroup("test1"));
         }
     }
 
