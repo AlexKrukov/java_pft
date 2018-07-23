@@ -22,6 +22,6 @@ public class NavigationHelper extends HelperBase {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
-    click(By.cssSelector("a[href='./'"));
+    click(By.name("home"));
   }
 }
