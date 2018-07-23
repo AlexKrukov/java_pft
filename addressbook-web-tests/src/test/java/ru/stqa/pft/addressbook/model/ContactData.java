@@ -7,7 +7,9 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;
     private String firstName;
     private String lastName;
-    private String phone;
+    private String homePhone;
+    private String workPhone;
+    private String mobilePhone;
     private String email;
     private String group;
 
@@ -19,8 +21,16 @@ public class ContactData {
         return lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
     }
 
     public String getEmail() {
@@ -50,8 +60,18 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withPhone(String phone) {
-        this.phone = phone;
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
         return this;
     }
 
@@ -68,9 +88,14 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", email='" + email + '\'' +
+                ", group='" + group + '\'' +
                 '}';
     }
 
@@ -81,12 +106,17 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName);
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(homePhone, that.homePhone) &&
+                Objects.equals(workPhone, that.workPhone) &&
+                Objects.equals(mobilePhone, that.mobilePhone) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(group, that.group);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, homePhone, workPhone, mobilePhone, email, group);
     }
 }
