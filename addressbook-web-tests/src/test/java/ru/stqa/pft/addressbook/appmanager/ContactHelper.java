@@ -62,9 +62,9 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void create(ContactData group) {
+  public void create(ContactData contact) {
     gotoAddContactPage();
-    fillContactForm(group);
+    fillContactForm(contact);
     enterNewContact();
     contactCache = null;
     returnToHomePage();
